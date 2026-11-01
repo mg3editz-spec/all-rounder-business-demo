@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Demo Fitness Club | Gym, Zumba, Personal Training & Nutrition</title>
+<meta name="description" content="Gym, personal training, Zumba classes, weight loss programs and nutrition counseling. Book your free demo trial today.">
+
+<!-- ========== FONTS, ICONS, TAILWIND (CDN) ========== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  /* ========== COLORS & FONTS ==========
+     Colors badalne ho to sirf yahan hex values change karo. */
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        ink:   '#0F1B3D',  // dark navy (main dark colour)
+        flame: '#FF7A1A',  // saffron orange (buttons / highlights)
+        teal:  '#12B5A6',  // fresh teal (secondary accent)
+        mist:  '#F4F6FB',  // light section background
+      },
+      fontFamily: {
+        display: ['"Barlow Condensed"', 'sans-serif'],
+        body: ['"DM Sans"', 'sans-serif'],
+      }
+    } }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { font-family: 'DM Sans', sans-serif; color: #0F1B3D; }
+  .field { width:100%; border:1.5px solid #D5DAE8; border-radius:10px; padding:12px 14px; background:#fff; font-size:15px; }
+  .field:focus { outline:none; border-color:#FF7A1A; box-shadow:0 0 0 3px rgba(255,122,26,.2); }
+  a:focus-visible, button:focus-visible { outline:3px solid #12B5A6; outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } * { animation:none !important; } }
+</style>
+</head>
+
+<body class="bg-white antialiased">
+
+<!-- ========== NAVBAR ========== -->
+<header class="fixed top-0 inset-x-0 z-40 bg-ink/95 backdrop-blur text-white">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-5 h-[68px]">
+    <a href="#home" class="font-display text-2xl font-bold tracking-wide">
+      <i class="fa-solid fa-dumbbell text-flame mr-2"></i>WEB DEMO <span class="text-flame">FITNESS CLUB</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="#about" class="hover:text-flame">About</a>
+      <a href="#services" class="hover:text-flame">Services</a>
+      <a href="#trial" class="hover:text-flame">How it works</a>
+      <a href="#contact" class="hover:text-flame">Contact</a>
+      <a href="#book" class="bg-flame text-white px-5 py-2.5 rounded-lg font-bold hover:bg-orange-600">Book free trial</a>
+    </nav>
+    <button id="menuBtn" class="md:hidden text-2xl" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <!-- Mobile menu -->
+  <nav id="mobileMenu" class="hidden md:hidden bg-ink border-t border-white/10 px-5 pb-5 text-base">
+    <a href="#about" class="block py-3">About</a>
+    <a href="#services" class="block py-3">Services</a>
+    <a href="#trial" class="block py-3">How it works</a>
+    <a href="#contact" class="block py-3">Contact</a>
+    <a href="#book" class="block mt-2 text-center bg-flame px-5 py-3 rounded-lg font-bold">Book free trial</a>
+  </nav>
+</header>
+
+<!-- ========== HERO + TRIAL BOOKING FORM ==========
+     Headline / subtext yahan edit karo. Booking form isi section mein hai. -->
+<section id="home" class="bg-ink text-white pt-[68px]">
+  <div class="max-w-6xl mx-auto px-5 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="text-teal font-bold mb-3"><i class="fa-solid fa-bolt mr-2"></i>First session is free</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[0.95]">
+        Build the body<br>you will be proud of.
+      </h1>
+      <p class="mt-6 text-lg text-white/80 max-w-md leading-relaxed">
+        Gym training, Zumba, weight loss programs and nutrition counseling, all under one roof with trainers who track your progress.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#book" class="bg-flame px-7 py-3.5 rounded-lg font-bold hover:bg-orange-600">Book free demo trial</a>
+        <a id="heroWa" href="#" target="_blank" rel="noopener" class="border-2 border-white/30 px-7 py-3.5 rounded-lg font-bold hover:border-teal hover:text-teal">
+          <i class="fa-brands fa-whatsapp mr-2"></i>Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Booking card -->
+    <div id="book" class="bg-white text-ink rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <h2 class="font-display text-3xl font-bold">Book your free demo trial</h2>
+      <p class="text-sm text-slate-600 mt-1 mb-5">Choose a date and class. We will confirm on call or WhatsApp.</p>
+
+      <!-- data-web3form = JS is form ko Web3Forms par bhejta hai -->
+      <form data-web3form data-success="Booking received! We will confirm your trial slot shortly." class="space-y-3">
+        <input type="hidden" name="subject" value="New Free Trial Booking - Web Demo Fitness Club">
+        <input type="hidden" name="from_name" value="Website Trial Booking">
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off"><!-- spam trap, mat hatao -->
+
+        <input class="field" type="text" name="name" placeholder="Your full name" required autocomplete="name">
+        <input class="field" type="tel" name="phone" placeholder="Phone / WhatsApp number" required autocomplete="tel" pattern="[0-9+\s-]{10,15}">
+        <div class="grid grid-cols-2 gap-3">
+          <input class="field" type="date" name="trial_date" id="trialDate" required aria-label="Preferred date">
+          <select class="field" name="trial_time" required aria-label="Preferred time">
+            <option value="">Time slot</option>
+            <!-- Time slots yahan badlo -->
+            <option>Morning (6 - 9 AM)</option>
+            <option>Late morning (9 - 12 PM)</option>
+            <option>Evening (4 - 7 PM)</option>
+            <option>Night (7 - 10 PM)</option>
+          </select>
+        </div>
+        <select class="field" name="interested_in" required aria-label="Interested in">
+          <option value="">I am interested in</option>
+          <!-- Services list yahan edit karo -->
+          <option>Gym</option>
+          <option>Personal training</option>
+          <option>Zumba classes</option>
+          <option>Weight loss program</option>
+          <option>Nutrition counseling</option>
+        </select>
+        <button type="submit" class="w-full bg-flame text-white font-bold py-3.5 rounded-lg hover:bg-orange-600">Book my free trial</button>
+        <p class="form-msg text-sm font-medium" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="font-display text-4xl sm:text-5xl font-bold">A gym that knows your name and your goal</h2>
+      <p class="mt-5 text-slate-600 leading-relaxed max-w-prose">
+        <!-- About text yahan apna likho -->
+        Web Demo Fitness Club is a neighbourhood fitness centre built for beginners and regulars alike. Every member gets a plan that fits their body, schedule and food habits, not a copy of someone else's routine.
+      </p>
+      <ul class="mt-6 space-y-3 text-slate-700">
+        <li><i class="fa-solid fa-circle-check text-teal mr-3"></i>Certified trainers who correct your form</li>
+        <li><i class="fa-solid fa-circle-check text-teal mr-3"></i>Workout and diet plan made for your goal</li>
+        <li><i class="fa-solid fa-circle-check text-teal mr-3"></i>Clean, well-equipped floor and friendly community</li>
+      </ul>
+    </div>
+    <!-- Stats: numbers apne hisaab se badlo -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="bg-mist rounded-xl p-6"><p class="font-display text-5xl font-bold text-flame">500+</p><p class="text-sm text-slate-600 mt-1">Active members</p></div>
+      <div class="bg-mist rounded-xl p-6"><p class="font-display text-5xl font-bold text-teal">10+</p><p class="text-sm text-slate-600 mt-1">Expert trainers</p></div>
+      <div class="bg-mist rounded-xl p-6"><p class="font-display text-5xl font-bold text-teal">5</p><p class="text-sm text-slate-600 mt-1">Programs under one roof</p></div>
+      <div class="bg-mist rounded-xl p-6"><p class="font-display text-5xl font-bold text-flame">5+</p><p class="text-sm text-slate-600 mt-1">Years of experience</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ==========
+     Ek service badalne ke liye ek <article> block copy/edit karo. Icon: fontawesome.com/icons -->
+<section id="services" class="py-16 md:py-24 bg-mist">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-display text-4xl sm:text-5xl font-bold">What we offer</h2>
+    <p class="mt-3 text-slate-600 max-w-xl">Pick one program or combine them. Your trainer will help you decide in the free trial.</p>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <article class="bg-white rounded-2xl p-7 border border-slate-200">
+        <div class="w-12 h-12 rounded-lg bg-ink text-flame flex items-center justify-center text-xl"><i class="fa-solid fa-dumbbell"></i></div>
+        <h3 class="font-display text-2xl font-bold mt-4">Gym</h3>
+        <p class="text-slate-600 mt-2 text-[15px] leading-relaxed">Modern cardio and strength equipment, free weights and open floor space for all fitness levels.</p>
+      </article>
+      <article class="bg-white rounded-2xl p-7 border border-slate-200">
+        <div class="w-12 h-12 rounded-lg bg-ink text-flame flex items-center justify-center text-xl"><i class="fa-solid fa-person-running"></i></div>
+        <h3 class="font-display text-2xl font-bold mt-4">Personal training</h3>
+        <p class="text-slate-600 mt-2 text-[15px] leading-relaxed">One-on-one sessions with a trainer for muscle gain, strength, rehab-friendly workouts or sports prep.</p>
+      </article>
+      <article class="bg-white rounded-2xl p-7 border border-slate-200">
+        <div class="w-12 h-12 rounded-lg bg-ink text-flame flex items-center justify-center text-xl"><i class="fa-solid fa-music"></i></div>
+        <h3 class="font-display text-2xl font-bold mt-4">Zumba classes</h3>
+        <p class="text-slate-600 mt-2 text-[15px] leading-relaxed">High-energy dance workouts to music. No dance experience needed, just bring your energy.</p>
+      </article>
+      <article class="bg-white rounded-2xl p-7 border border-slate-200">
+        <div class="w-12 h-12 rounded-lg bg-ink text-flame flex items-center justify-center text-xl"><i class="fa-solid fa-weight-scale"></i></div>
+        <h3 class="font-display text-2xl font-bold mt-4">Weight loss programs</h3>
+        <p class="text-slate-600 mt-2 text-[15px] leading-relaxed">Structured fat-loss plans combining workouts, daily habits and regular progress check-ins.</p>
+      </article>
+      <article class="bg-white rounded-2xl p-7 border border-slate-200">
+        <div class="w-12 h-12 rounded-lg bg-ink text-flame flex items-center justify-center text-xl"><i class="fa-solid fa-apple-whole"></i></div>
+        <h3 class="font-display text-2xl font-bold mt-4">Nutrition counseling</h3>
+        <p class="text-slate-600 mt-2 text-[15px] leading-relaxed">Practical Indian diet plans that match your goal, budget and taste, with no extreme crash diets.</p>
+      </article>
+      <article class="bg-ink text-white rounded-2xl p-7 flex flex-col justify-between">
+        <div>
+          <h3 class="font-display text-2xl font-bold">Not sure where to start?</h3>
+          <p class="text-white/75 mt-2 text-[15px] leading-relaxed">Try a free session and let our trainer suggest the right program.</p>
+        </div>
+        <a href="#book" class="mt-5 inline-block bg-flame text-center px-5 py-3 rounded-lg font-bold hover:bg-orange-600">Book free trial</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FREE TRIAL STEPS (yeh sach mein ek sequence hai, isliye numbers) ========== -->
+<section id="trial" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <h2 class="font-display text-4xl sm:text-5xl font-bold">Your free trial in 3 steps</h2>
+    <div class="mt-10 grid md:grid-cols-3 gap-5">
+      <div class="border-l-4 border-flame pl-5">
+        <p class="font-display text-4xl font-bold text-flame">1</p>
+        <h3 class="font-bold text-lg mt-1">Book a slot</h3>
+        <p class="text-slate-600 text-[15px] mt-1">Fill the form above with your preferred date and time.</p>
+      </div>
+      <div class="border-l-4 border-teal pl-5">
+        <p class="font-display text-4xl font-bold text-teal">2</p>
+        <h3 class="font-bold text-lg mt-1">We confirm</h3>
+        <p class="text-slate-600 text-[15px] mt-1">Our team calls or messages you on WhatsApp to confirm.</p>
+      </div>
+      <div class="border-l-4 border-flame pl-5">
+        <p class="font-display text-4xl font-bold text-flame">3</p>
+        <h3 class="font-bold text-lg mt-1">Train with us</h3>
+        <p class="text-slate-600 text-[15px] mt-1">Visit, meet a trainer and try a full session. No payment needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="py-16 md:py-24 bg-mist">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="font-display text-4xl sm:text-5xl font-bold">Get in touch</h2>
+      <p class="mt-3 text-slate-600 max-w-md">Questions about fees, timings or programs? Send a message and we will reply soon.</p>
+      <ul class="mt-8 space-y-5">
+        <!-- ADDRESS / PHONE / EMAIL: dono jagah (yahan aur script config) apni real details daalo -->
+        <li class="flex gap-4"><i class="fa-solid fa-location-dot text-flame text-xl mt-1"></i><span id="addr">Your address here, City, State</span></li>
+        <li class="flex gap-4"><i class="fa-solid fa-phone text-flame text-xl mt-1"></i><a id="phoneLink" href="#" class="hover:text-flame"></a></li>
+        <li class="flex gap-4"><i class="fa-solid fa-envelope text-flame text-xl mt-1"></i><a id="mailLink" href="#" class="hover:text-flame break-all"></a></li>
+        <li class="flex gap-4"><i class="fa-solid fa-clock text-flame text-xl mt-1"></i><span>Mon - Sat: 5:30 AM - 10 PM<br>Sunday: 7 AM - 12 PM</span></li>
+      </ul>
+      <a id="contactWa" href="#" target="_blank" rel="noopener" class="mt-8 inline-block bg-[#25D366] text-white px-6 py-3.5 rounded-lg font-bold hover:brightness-95">
+        <i class="fa-brands fa-whatsapp mr-2"></i>Message us on WhatsApp
+      </a>
+    </div>
+
+    <!-- Contact form -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200">
+      <form data-web3form data-success="Thanks! Your message has been sent. We will reply soon." class="space-y-3">
+        <input type="hidden" name="subject" value="New Website Enquiry - Web Demo Fitness Club">
+        <input type="hidden" name="from_name" value="Website Contact Form">
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+        <input class="field" type="text" name="name" placeholder="Your name" required autocomplete="name">
+        <input class="field" type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <input class="field" type="tel" name="phone" placeholder="Phone number" autocomplete="tel">
+        <textarea class="field" name="message" rows="5" placeholder="How can we help?" required></textarea>
+        <button type="submit" class="w-full bg-ink text-white font-bold py-3.5 rounded-lg hover:bg-slate-800">Send message</button>
+        <p class="form-msg text-sm font-medium" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-ink text-white/80">
+  <div class="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
+    <div>
+      <p class="font-display text-2xl font-bold text-white"><i class="fa-solid fa-dumbbell text-flame mr-2"></i>WEB DEMO FITNESS CLUB</p>
+      <p class="text-sm mt-1">Gym, Zumba, personal training and nutrition.</p>
+    </div>
+    <!-- Social links: # ki jagah apne links daalo -->
+    <div class="flex gap-5 text-xl">
+      <a href="#" aria-label="Instagram" class="hover:text-flame"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook" class="hover:text-flame"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" aria-label="YouTube" class="hover:text-flame"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
+  <div class="border-t border-white/10 text-center text-xs py-4">&copy; <span id="year"></span> Web Demo Fitness Club. All rights reserved.</div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a id="floatWa" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+   class="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white text-3xl flex items-center justify-center shadow-xl hover:scale-105 transition">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+/* =====================================================
+   CONFIG: Sirf yeh section edit karna kaafi hai
+   ===================================================== */
+const CONFIG = {
+  web3formsKey: "xxxx-xxxx-xxxx",          // Web3Forms access key (web3forms.com se milti hai)
+  phone:        "0000000000",              // Call number (display + tel: link)
+  whatsapp:     "910000000000",            // Country code ke saath, bina + ya space ke (India = 91)
+  email:        "demo@gmail.com",
+  waMessage:    "Hi! I want to know more about Web Demo Fitness Club."  // WhatsApp ka pre-filled message
+};
+
+/* ---- Contact details page par lagao ---- */
+const waLink = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(CONFIG.waMessage)}`;
+['heroWa', 'contactWa', 'floatWa'].forEach(id => document.getElementById(id).href = waLink);
+const phoneEl = document.getElementById('phoneLink');
+phoneEl.href = 'tel:' + CONFIG.phone; phoneEl.textContent = CONFIG.phone;
+const mailEl = document.getElementById('mailLink');
+mailEl.href = 'mailto:' + CONFIG.email; mailEl.textContent = CONFIG.email;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---- Mobile menu ---- */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('hidden') === false;
+  menuBtn.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', false);
+}));
+
+/* ---- Trial date: aaj se pehle ki date select nahi hogi ---- */
+const dateInput = document.getElementById('trialDate');
+dateInput.min = new Date().toISOString().split('T')[0];
+
+/* ---- Web3Forms: dono forms (booking + contact) yahi handle karta hai ---- */
+document.querySelectorAll('form[data-web3form]').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = form.querySelector('.form-msg');
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending...';
+    msg.textContent = ''; msg.className = 'form-msg text-sm font-medium';
+
+    const data = new FormData(form);
+    data.append('access_key', CONFIG.web3formsKey);
+
+    try {
+      const res = await fetch('http
